@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+jimmer:
+  dialect: org.babyfish.jimmer.sql.dialect.MySqlDialect
+  show-sql: true
+  pretty-sql: true
+  database-validation-mode: ERROR
