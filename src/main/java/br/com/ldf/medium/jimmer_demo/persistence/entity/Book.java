@@ -1,6 +1,5 @@
 package br.com.ldf.medium.jimmer_demo.persistence.entity;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
