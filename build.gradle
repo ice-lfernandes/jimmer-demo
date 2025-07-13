@@ -25,15 +25,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
-
-    implementation "org.babyfish.jimmer:jimmer-spring-boot-starter:0.9.64"
-    // User entity code
-    implementation "org.babyfish.jimmer:jimmer-core:0.9.64"
-    // Generated code
-    compileOnly "org.babyfish.jimmer:jimmer-sql:0.9.64"
-
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'io.github.open-source-lfernandes:spring-log-utils:1.0.0'
 
     compileOnly 'org.projectlombok:lombok'

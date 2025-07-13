@@ -1,12 +1,15 @@
 package br.com.ldf.medium.jimmer_demo.persistence.enums;
 
-import org.babyfish.jimmer.sql.EnumItem;
+import lombok.Getter;
 
+@Getter
 public enum Gender {
+    M("Male"), F("Female");
 
-    @EnumItem(name = "M")
-    MALE,
+    private final String description;
 
-    @EnumItem(name = "F")
-    FEMALE
+    Gender(String description) {
+        this.description = description;
+    }
+
 }

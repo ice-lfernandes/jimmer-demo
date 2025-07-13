@@ -3,7 +3,6 @@ package br.com.ldf.medium.jimmer_demo.service;
 import br.com.ldf.medium.jimmer_demo.persistence.entity.Book;
 import br.com.ldf.medium.jimmer_demo.persistence.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.babyfish.jimmer.Page;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,23 +12,8 @@ public class BookService {
     private final BookRepository bookRepository;
 
     public Book findById(Long id) {
-        return bookRepository.findById(id);
-    }
-
-    public Page<Book> findBooks(int pageIndex, int pageSize, String sortCode, String name) {
-        return bookRepository.findBooks(
-            pageIndex,
-            pageSize,
-            null, // No fetcher provided
-            sortCode,
-            name,
-            null, // No minimum price filter
-            null, // No maximum price filter
-            null, // No store name filter
-            null, // No store website filter
-            null, // No author name filter
-            null  // No author gender filter
-        );
+        return bookRepository.findById(id)
+            .orElseThrow(RuntimeException::new);
     }
 
 }

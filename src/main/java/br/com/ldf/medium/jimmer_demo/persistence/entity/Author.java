@@ -1,24 +1,35 @@
 package br.com.ldf.medium.jimmer_demo.persistence.entity;
 
 import br.com.ldf.medium.jimmer_demo.persistence.enums.Gender;
-import org.babyfish.jimmer.sql.*;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
 @Entity
 @Table(name = "author")
-public interface Author {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id();
-    
-    String firstName();
+    long id;
 
-    String lastName();
+    @Column
+    String firstName;
 
-    Gender gender();
+    @Column
+    String lastName;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    Gender gender;
 
     @ManyToMany(mappedBy = "authors")
-    List<Book> books();
+    List<Book> books;
 }

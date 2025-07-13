@@ -1,34 +1,43 @@
 package br.com.ldf.medium.jimmer_demo.persistence.entity;
 
 import jakarta.annotation.Nullable;
-import org.babyfish.jimmer.sql.*;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
 @Table(name = "book")
-public interface Book {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id();
-    
-    String name();
+    long id;
 
-    int edition();
+    @Column
+    String name;
 
-    BigDecimal price();
+    @Column
+    int edition;
+
+    @Column
+    BigDecimal price;
 
     @ManyToMany
     @JoinTable(
-        name = "BOOK_AUTHOR_MAPPING",
-        joinColumnName = "BOOK_ID",
-        inverseJoinColumnName = "AUTHOR_ID"
+        name = "book_author_mapping",
+        joinColumns = { @JoinColumn(name = "book_id") },
+        inverseJoinColumns = { @JoinColumn(name = "author_id") }
     )
-    List<Author> authors();
+    List<Author> authors;
 
     @ManyToOne
-    @Nullable
-    BookStore store();
+    BookStore store;
 }

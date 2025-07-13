@@ -1,22 +1,29 @@
 package br.com.ldf.medium.jimmer_demo.persistence.entity;
 
 import jakarta.annotation.Nullable;
-import org.babyfish.jimmer.sql.*;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
 @Entity
 @Table(name = "book_store")
-public interface BookStore {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class BookStore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id();
+    long id;
 
-    String name();
+    String name;
 
     @Nullable
-    String website();
+    String website;
 
     @OneToMany(mappedBy = "store")
-    List<Book> books();
+    List<Book> books;
 }
