@@ -6,6 +6,7 @@ import org.babyfish.jimmer.sql.*;
 import java.util.List;
 
 @Entity
+@Table(name = "author")
 public interface Author {
 
     @Id

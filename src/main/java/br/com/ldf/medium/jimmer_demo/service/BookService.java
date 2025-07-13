@@ -4,7 +4,6 @@ import br.com.ldf.medium.jimmer_demo.persistence.entity.Book;
 import br.com.ldf.medium.jimmer_demo.persistence.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.babyfish.jimmer.Page;
-import org.babyfish.jimmer.sql.JSqlClient;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +11,10 @@ import org.springframework.stereotype.Service;
 public class BookService {
 
     private final BookRepository bookRepository;
-    private final JSqlClient sqlClient;
+
+    public Book findById(Long id) {
+        return bookRepository.findById(id);
+    }
 
     public Page<Book> findBooks(int pageIndex, int pageSize, String sortCode, String name) {
         return bookRepository.findBooks(

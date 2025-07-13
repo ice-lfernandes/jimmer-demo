@@ -6,6 +6,7 @@ import org.babyfish.jimmer.sql.*;
 import java.util.List;
 
 @Entity
+@Table(name = "book_store")
 public interface BookStore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
