@@ -1,4 +1,7 @@
 spring:
+  log-utils:
+    http-method:
+      enable: false
   datasource:
     url: jdbc:mysql://localhost:3306/db
     username: root

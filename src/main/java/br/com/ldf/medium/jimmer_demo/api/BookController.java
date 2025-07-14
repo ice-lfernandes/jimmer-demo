@@ -5,10 +5,7 @@ import br.com.ldf.medium.jimmer_demo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.babyfish.jimmer.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/books")
@@ -18,8 +15,8 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
-        Book book = bookService.findById(id);
+    public ResponseEntity<Book> getBookById(@PathVariable Long id, @RequestParam boolean nativeQuery) {
+        Book book = bookService.findById(id, nativeQuery);
         if (book == null) {
             return ResponseEntity.notFound().build();
         }

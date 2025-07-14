@@ -24,6 +24,11 @@ insert into author(id, first_name, last_name, gender, created_time, modified_tim
     (5, 'Samer', 'Buna', 'M', now(), now())
 ;
 
+insert into book_store(id, name) values
+    (1, 'O''REILLY'),
+    (2, 'MANNING')
+;
+
 insert into book_author_mapping(book_id, author_id) values
     (1, 1),
     (2, 1),
