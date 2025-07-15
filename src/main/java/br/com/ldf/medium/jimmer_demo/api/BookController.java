@@ -7,6 +7,8 @@ import org.babyfish.jimmer.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
@@ -21,6 +23,12 @@ public class BookController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(book);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Book>> getBookByName(@RequestParam String name) {
+        var books = bookService.findByName(name);
+        return ResponseEntity.ok(books);
     }
 
     public ResponseEntity<Page<Book>> getBooks(

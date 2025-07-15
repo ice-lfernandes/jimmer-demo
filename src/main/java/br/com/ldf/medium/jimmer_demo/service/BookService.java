@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.babyfish.jimmer.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -19,6 +21,10 @@ public class BookService {
             return bookNativeSQLRepository.findById(id);
         }
         return bookRepository.findById(id).orElse(null);
+    }
+
+    public List<Book> findByName(String name) {
+        return bookNativeSQLRepository.findByName(name);
     }
 
     public Page<Book> findBooks(int pageIndex, int pageSize, String sortCode, String name) {

@@ -3,7 +3,6 @@ package br.com.ldf.medium.jimmer_demo.persistence.repository;
 import br.com.ldf.medium.jimmer_demo.persistence.entity.Book;
 import br.com.ldf.medium.jimmer_demo.persistence.entity.BookTable;
 import br.com.ldf.medium.jimmer_demo.persistence.enums.Gender;
-import io.github.ice_lfernandes.spring.log.utils.features.annotations.LogExecution;
 import jakarta.annotation.Nullable;
 import org.babyfish.jimmer.Page;
 import org.babyfish.jimmer.sql.JSqlClient;
@@ -13,6 +12,7 @@ import org.babyfish.jimmer.sql.fetcher.Fetcher;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Repository
 public class BookNativeSQLRepository {
@@ -25,13 +25,20 @@ public class BookNativeSQLRepository {
         this.sqlClient = sqlClient;
     }
 
-    @LogExecution
     public Book findById(Long id) {
         return sqlClient
             .createQuery(T)
             .where(T.id().eq(id))
             .select(T)
             .fetchOne();
+    }
+
+    public List<Book> findByName(String name) {
+        return sqlClient
+            .createQuery(T)
+            .where(T.name().like(name))
+            .select(T)
+            .execute();
     }
 
     public Page<Book> findBooks(
