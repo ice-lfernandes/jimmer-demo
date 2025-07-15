@@ -27,6 +27,6 @@ public class BookController {
     @GetMapping
     public ResponseEntity<List<Book>> getBookByName(@RequestParam String name) {
         var books = bookService.findByName(name);
-        return ResponseEntity.ok(books);
+        return null;
     }
 }
