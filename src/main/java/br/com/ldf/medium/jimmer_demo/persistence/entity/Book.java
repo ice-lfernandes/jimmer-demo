@@ -29,7 +29,7 @@ public class Book {
     @Column
     BigDecimal price;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "book_author_mapping",
         joinColumns = { @JoinColumn(name = "book_id") },
@@ -37,6 +37,6 @@ public class Book {
     )
     List<Author> authors;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     BookStore store;
 }

@@ -4,10 +4,9 @@ import br.com.ldf.medium.jimmer_demo.persistence.entity.Book;
 import br.com.ldf.medium.jimmer_demo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
@@ -25,4 +24,9 @@ public class BookController {
         return ResponseEntity.ok(book);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Book>> getBookByName(@RequestParam String name) {
+        var books = bookService.findByName(name);
+        return ResponseEntity.ok(books);
+    }
 }
